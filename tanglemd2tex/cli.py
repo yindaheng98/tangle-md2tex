@@ -4,8 +4,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from .core import tangle_file
 from .lit_file import find_lit_files
+from .tangle import tangle_file
 
 
 def build_parser() -> argparse.ArgumentParser:

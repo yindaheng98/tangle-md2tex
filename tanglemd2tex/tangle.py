@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+from pathlib import Path
 from markdown_it import MarkdownIt
 
+from .lit_file import lit_to_tex_path
 
-def extract_latex_text(text: str) -> str:
+
+def tangle_text(text: str) -> str:
     latex_blocks = [
         token.content.strip()
         for token in MarkdownIt("commonmark").parse(text)
@@ -14,3 +17,11 @@ def extract_latex_text(text: str) -> str:
         return ""
 
     return "\n\n".join(latex_blocks).rstrip() + "\n"
+
+
+def tangle_file(lit_path: Path) -> Path:
+    tex_path = lit_to_tex_path(lit_path)
+    text = lit_path.read_text(encoding="utf-8")
+    tex_text = tangle_text(text)
+    tex_path.write_text(tex_text, encoding="utf-8")
+    return tex_path
