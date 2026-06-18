@@ -7,16 +7,11 @@ from .lit_file import lit_to_tex_path
 
 
 def tangle_text(text: str) -> str:
-    latex_blocks = [
-        token.content.strip()
+    return "".join(
+        token.content
         for token in MarkdownIt("commonmark").parse(text)
         if token.type == "fence" and token.info.strip() == "latex"
-    ]
-
-    if not latex_blocks:
-        return ""
-
-    return "\n\n".join(latex_blocks).rstrip() + "\n"
+    )
 
 
 def tangle_file(lit_path: Path) -> Path:
