@@ -4,8 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tangle-md2tex"
-version = "0.1.0"
+version = "0.2.0"
 description = "Extract LaTeX fenced blocks from literate Markdown files."
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "yindaheng98", email = "yindaheng98@gmail.com" }]
